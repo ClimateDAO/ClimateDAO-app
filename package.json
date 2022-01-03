@@ -1,0 +1,23 @@
+{
+  "name": "climatedao",
+  "version": "1.0.0",
+  "description": "Governance protocol for ClimateDAO based on OpenZeppelin Governor",
+  "main": "truffle-config.js",
+  "scripts": {
+    "test": "test",
+    "deploy:rinkeby": "truffle deploy --network rinkeby"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClimateDAO/ClimateDAO-app.git"
+  },
+  "author": "ClimateDAO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClimateDAO/ClimateDAO-app/issues"
+  },
+  "homepage": "https://github.com/ClimateDAO/ClimateDAO-app#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
