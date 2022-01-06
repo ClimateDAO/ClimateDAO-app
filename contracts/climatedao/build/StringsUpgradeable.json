@@ -1,16 +1,18 @@
 {
   "contractName": "StringsUpgradeable",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"String operations.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol\":\"StringsUpgradeable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0xed12e1c10c09054954b16a1b1f4250c4bbc0c7140d720777626fb5886a1a0e25\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://de44624131ca75031b9d8751c42138d5792acb956604dd776c1c7cf1fbd86d26\",\"dweb:/ipfs/QmaUiV9pMt4AeAMxdMnDCsQSwFXLmTAvrQwWBb1bwZBhTu\"]}},\"version\":1}",
-  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220cabea4768f311713a97a7fe7a1fec3d48f47ea1985757334731ddb3825b9f88064736f6c63430008040033",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220cabea4768f311713a97a7fe7a1fec3d48f47ea1985757334731ddb3825b9f88064736f6c63430008040033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"String operations.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol\":\"StringsUpgradeable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0xed12e1c10c09054954b16a1b1f4250c4bbc0c7140d720777626fb5886a1a0e25\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://de44624131ca75031b9d8751c42138d5792acb956604dd776c1c7cf1fbd86d26\",\"dweb:/ipfs/QmaUiV9pMt4AeAMxdMnDCsQSwFXLmTAvrQwWBb1bwZBhTu\"]}},\"version\":1}",
+  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206235275e4e17940c8e734fdf7b49f67815ec18aab8baab1d499ab7f76d330f9264736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206235275e4e17940c8e734fdf7b49f67815ec18aab8baab1d499ab7f76d330f9264736f6c63430008040033",
   "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
   "sourceMap": "146:1896:20:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;146:1896:20;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "146:1896:20:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.0 (utils/Strings.sol)\n\npragma solidity ^0.8.0;\n\n/**\n * @dev String operations.\n */\nlibrary StringsUpgradeable {\n    bytes16 private constant _HEX_SYMBOLS = \"0123456789abcdef\";\n\n    /**\n     * @dev Converts a `uint256` to its ASCII `string` decimal representation.\n     */\n    function toString(uint256 value) internal pure returns (string memory) {\n        // Inspired by OraclizeAPI's implementation - MIT licence\n        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol\n\n        if (value == 0) {\n            return \"0\";\n        }\n        uint256 temp = value;\n        uint256 digits;\n        while (temp != 0) {\n            digits++;\n            temp /= 10;\n        }\n        bytes memory buffer = new bytes(digits);\n        while (value != 0) {\n            digits -= 1;\n            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));\n            value /= 10;\n        }\n        return string(buffer);\n    }\n\n    /**\n     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.\n     */\n    function toHexString(uint256 value) internal pure returns (string memory) {\n        if (value == 0) {\n            return \"0x00\";\n        }\n        uint256 temp = value;\n        uint256 length = 0;\n        while (temp != 0) {\n            length++;\n            temp >>= 8;\n        }\n        return toHexString(value, length);\n    }\n\n    /**\n     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.\n     */\n    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {\n        bytes memory buffer = new bytes(2 * length + 2);\n        buffer[0] = \"0\";\n        buffer[1] = \"x\";\n        for (uint256 i = 2 * length + 1; i > 1; --i) {\n            buffer[i] = _HEX_SYMBOLS[value & 0xf];\n            value >>= 4;\n        }\n        require(value == 0, \"Strings: hex length insufficient\");\n        return string(buffer);\n    }\n}\n",
-  "sourcePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+  "sourcePath": "/Users/rishubhanda/Desktop/climate_dao/ClimateDAO-app/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
   "ast": {
-    "absolutePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+    "absolutePath": "project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
     "exportedSymbols": {
       "StringsUpgradeable": [
         5531
@@ -2557,7 +2559,7 @@
     "src": "86:1957:20"
   },
   "legacyAST": {
-    "absolutePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
+    "absolutePath": "project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
     "exportedSymbols": {
       "StringsUpgradeable": [
         5531
@@ -5108,8 +5110,8 @@
     "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.2.3",
-  "updatedAt": "2022-01-03T18:33:25.641Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-01-06T02:05:49.155Z",
   "devdoc": {
     "details": "String operations.",
     "kind": "dev",
