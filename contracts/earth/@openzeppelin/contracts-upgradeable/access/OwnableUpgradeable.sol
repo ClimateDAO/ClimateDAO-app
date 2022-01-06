@@ -21,6 +21,11 @@ import "../proxy/utils/Initializable.sol";
 abstract contract OwnableUpgradeable is Initializable, ContextUpgradeable {
     address private _owner;
 
+    // RH: 
+    address private _previousOwner;
+    uint256 private _lockTime;
+
+
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
@@ -79,5 +84,33 @@ abstract contract OwnableUpgradeable is Initializable, ContextUpgradeable {
         _owner = newOwner;
         emit OwnershipTransferred(oldOwner, newOwner);
     }
+
+
+    // RH: Copied from Safemoon Ownable 
+    function getUnlockTime() public view returns (uint256) {
+        return _lockTime;
+    }
+
+    // RH: Copied from Safemoon Ownable 
+    //Locks the contract for owner for the amount of time provided
+    function lock(uint256 time) public virtual onlyOwner {
+        _previousOwner = _owner;
+        _owner = address(0);
+        _lockTime = block.timestamp + time;
+        emit OwnershipTransferred(_owner, address(0));
+    }
+
+    // RH: Copied from Safemoon Ownable 
+    //Unlocks the contract for owner when _lockTime is exceeds
+    function unlock() public virtual {
+        require(_previousOwner == msg.sender, "You don't have permission to unlock");
+        require(block.timestamp > _lockTime , "Contract is locked until 7 days");
+        emit OwnershipTransferred(_owner, _previousOwner);
+        _owner = _previousOwner;
+    }
+
+
+
+
     uint256[49] private __gap;
 }

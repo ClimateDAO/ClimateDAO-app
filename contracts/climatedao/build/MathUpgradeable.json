@@ -1,16 +1,18 @@
 {
   "contractName": "MathUpgradeable",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Standard math utilities missing in the Solidity language.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol\":\"MathUpgradeable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xb5f53cc3ab24ab6fa25438eb8f5d7eb1c3ba12ee0766e7f8f3b73d6a94d22131\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://952ad1cd2e872ebb95bc950545dac15981ef5edcd58e2dc193384c493c4a514d\",\"dweb:/ipfs/QmYzF7ugT4yfr1Cu6kHFKw5L1oRwxBLJnYA4tyVzRocyAd\"]}},\"version\":1}",
-  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212204fc2d286234a257add24884fc92043fc27ea10c946d0b8d28b8ed36838c64a2564736f6c63430008040033",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212204fc2d286234a257add24884fc92043fc27ea10c946d0b8d28b8ed36838c64a2564736f6c63430008040033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Standard math utilities missing in the Solidity language.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol\":\"MathUpgradeable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xb5f53cc3ab24ab6fa25438eb8f5d7eb1c3ba12ee0766e7f8f3b73d6a94d22131\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://952ad1cd2e872ebb95bc950545dac15981ef5edcd58e2dc193384c493c4a514d\",\"dweb:/ipfs/QmYzF7ugT4yfr1Cu6kHFKw5L1oRwxBLJnYA4tyVzRocyAd\"]}},\"version\":1}",
+  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122076756f5b91de64d515fedf8f5399388d2640404c427dea76659b25f661d2074364736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122076756f5b91de64d515fedf8f5399388d2640404c427dea76659b25f661d2074364736f6c63430008040033",
   "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
   "sourceMap": "187:1035:26:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;187:1035:26;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "187:1035:26:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.0 (utils/math/Math.sol)\n\npragma solidity ^0.8.0;\n\n/**\n * @dev Standard math utilities missing in the Solidity language.\n */\nlibrary MathUpgradeable {\n    /**\n     * @dev Returns the largest of two numbers.\n     */\n    function max(uint256 a, uint256 b) internal pure returns (uint256) {\n        return a >= b ? a : b;\n    }\n\n    /**\n     * @dev Returns the smallest of two numbers.\n     */\n    function min(uint256 a, uint256 b) internal pure returns (uint256) {\n        return a < b ? a : b;\n    }\n\n    /**\n     * @dev Returns the average of two numbers. The result is rounded towards\n     * zero.\n     */\n    function average(uint256 a, uint256 b) internal pure returns (uint256) {\n        // (a + b) / 2 can overflow.\n        return (a & b) + (a ^ b) / 2;\n    }\n\n    /**\n     * @dev Returns the ceiling of the division of two numbers.\n     *\n     * This differs from standard division with `/` in that it rounds up instead\n     * of rounding down.\n     */\n    function ceilDiv(uint256 a, uint256 b) internal pure returns (uint256) {\n        // (a + b - 1) / b can overflow on addition, so we distribute.\n        return a / b + (a % b == 0 ? 0 : 1);\n    }\n}\n",
-  "sourcePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+  "sourcePath": "/Users/rishubhanda/Desktop/climate_dao/ClimateDAO-app/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
   "ast": {
-    "absolutePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+    "absolutePath": "project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
     "exportedSymbols": {
       "MathUpgradeable": [
         6430
@@ -1095,7 +1097,7 @@
     "src": "88:1135:26"
   },
   "legacyAST": {
-    "absolutePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+    "absolutePath": "project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
     "exportedSymbols": {
       "MathUpgradeable": [
         6430
@@ -2184,8 +2186,8 @@
     "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.2.3",
-  "updatedAt": "2022-01-03T18:33:25.653Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-01-06T02:05:49.178Z",
   "devdoc": {
     "details": "Standard math utilities missing in the Solidity language.",
     "kind": "dev",
