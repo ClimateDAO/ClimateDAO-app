@@ -551,6 +551,7 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
 
     // RH: 
     uint256 public _initialTaxFee = 10; 
+    uint256 private _previousInitialTaxFee = _initialTaxFee; 
     uint256 public _expiry = 15780000; // QUESTION: this is just a rough estimate. is that okay?
     mapping(address => uint256) internal _lastTokenTransferTime;
     
@@ -867,7 +868,8 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     }
     
     function removeAllFee() private {
-        if(_taxFee == 0 && _liquidityFee == 0) return;
+        // RH: 
+        if(_taxFee == 0 && _liquidityFee == 0 && _initialTaxFee == 0) return;
         
         _previousTaxFee = _taxFee;
         _previousLiquidityFee = _liquidityFee;
@@ -876,11 +878,15 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         _liquidityFee = 0;
 
         // RH: 
+        _previousInitialTaxFee = _initialTaxFee; 
         _initialTaxFee = 0; 
+        
     }
     
     function restoreAllFee() private {
         _taxFee = _previousTaxFee;
+        // RH: 
+        _initialTaxFee = _previousInitialTaxFee; 
         _liquidityFee = _previousLiquidityFee;
     }
     
