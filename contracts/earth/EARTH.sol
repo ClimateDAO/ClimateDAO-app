@@ -548,6 +548,11 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     
     uint256 public _taxFee = 5;
     uint256 private _previousTaxFee = _taxFee;
+
+    // RH: 
+    uint256 public _initialTaxFee = 10; 
+    uint256 public _expiry = 15780000; // QUESTION: this is just a rough estimate. is that okay?
+    mapping(address => uint256) internal _lastTokenTransferTime;
     
     uint256 public _liquidityFee = 5;
     uint256 private _previousLiquidityFee = _liquidityFee;
@@ -655,6 +660,51 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         return _tFeeTotal;
     }
 
+
+    // RH: 
+    function _calculateTaxFee(uint256 amount) internal view returns (uint256 feeTaken, uint256 transferAmount) {
+        
+        /**
+         *  The actual calculation is: 
+         *  
+         *  initialFee = amount / initialTax 
+         *  taxFraction = (expiry - timeSince) / expiry
+         *  actualFee = initialFee * taxFraction 
+         *  
+         *  To avoid decimal issues, it's best to multiply all the numerators first, then denominators
+         *  
+         *  feeNumerator = amount * (expiry - timeSince) 
+         *  feeDenominator = expiry * initialTax            // Requires a non-zero initialTaxFee 
+         *  actualFee = feeNumerator / feeDenominator 
+         *  
+         */
+
+        require(amount > 0, "Must transfer a non-zero amount"); 
+        
+        // QUESTION: is this what the mapping was intended for? 
+        if(isExcludedFromFee(msg.sender) || _initialTaxFee == 0) {
+            return (0, amount); 
+        }
+
+        uint256 lastTransferTime = _lastTokenTransferTime[msg.sender]; 
+        uint256 timeSince = block.timestamp - lastTransferTime; 
+
+        if(timeSince >= _expiry) {
+            return (0, amount); 
+        }
+
+        uint256 feeNumerator = amount.mul(_expiry.sub(timeSince)); 
+        uint256 feeDenominator = _expiry.mul(_initialTaxFee); 
+        feeTaken = feeNumerator.div(feeDenominator); 
+        transferAmount = amount.sub(feeTaken); 
+
+        return (feeTaken, transferAmount); 
+
+    }
+
+
+
+
     function deliver(uint256 tAmount) public {
         address sender = _msgSender();
         require(!_isExcluded[sender], "Excluded addresses cannot call this function");
@@ -703,7 +753,8 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
             }
         }
     }
-        function _transferBothExcluded(address sender, address recipient, uint256 tAmount) private {
+
+    function _transferBothExcluded(address sender, address recipient, uint256 tAmount) private {
         (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity) = _getValues(tAmount);
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
@@ -714,7 +765,7 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         emit Transfer(sender, recipient, tTransferAmount);
     }
     
-        function excludeFromFee(address account) public onlyOwner {
+    function excludeFromFee(address account) public onlyOwner {
         _isExcludedFromFee[account] = true;
     }
     
@@ -722,8 +773,15 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         _isExcludedFromFee[account] = false;
     }
     
+
+    // QUESTION: are we still using this variable for something else? 
     function setTaxFeePercent(uint256 taxFee) external onlyOwner() {
         _taxFee = taxFee;
+    }
+
+    // RH: 
+    function setInitialTaxFee(uint256 initialTaxFee) external onlyOwner() {
+        _initialTaxFee = initialTaxFee; 
     }
     
     function setLiquidityFeePercent(uint256 liquidityFee) external onlyOwner() {
@@ -756,7 +814,8 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     }
 
     function _getTValues(uint256 tAmount) private view returns (uint256, uint256, uint256) {
-        uint256 tFee = calculateTaxFee(tAmount);
+        // RH: 
+        (uint256 tFee, uint256 _transferAmount) = _calculateTaxFee(tAmount);
         uint256 tLiquidity = calculateLiquidityFee(tAmount);
         uint256 tTransferAmount = tAmount.sub(tFee).sub(tLiquidity);
         return (tTransferAmount, tFee, tLiquidity);
@@ -795,11 +854,11 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
             _tOwned[address(this)] = _tOwned[address(this)].add(tLiquidity);
     }
     
-    function calculateTaxFee(uint256 _amount) private view returns (uint256) {
-        return _amount.mul(_taxFee).div(
-            10**2
-        );
-    }
+    // function calculateTaxFee(uint256 _amount) private view returns (uint256) {
+    //     return _amount.mul(_taxFee).div(
+    //         10**2
+    //     );
+    // }
 
     function calculateLiquidityFee(uint256 _amount) private view returns (uint256) {
         return _amount.mul(_liquidityFee).div(
@@ -815,6 +874,9 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         
         _taxFee = 0;
         _liquidityFee = 0;
+
+        // RH: 
+        _initialTaxFee = 0; 
     }
     
     function restoreAllFee() private {
@@ -941,9 +1003,12 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
 
     //this method is responsible for taking all fee, if takeFee is true
     function _tokenTransfer(address sender, address recipient, uint256 amount,bool takeFee) private {
+
+        // RH: QUESTION: Doesn't this remove fees for everyone though since it's an application state? 
         if(!takeFee)
             removeAllFee();
         
+        // RH: QUESTION: why is this so complicated? 
         if (_isExcluded[sender] && !_isExcluded[recipient]) {
             _transferFromExcluded(sender, recipient, amount);
         } else if (!_isExcluded[sender] && _isExcluded[recipient]) {
@@ -955,6 +1020,9 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         } else {
             _transferStandard(sender, recipient, amount);
         }
+
+        // RH: Update the last time the recipient was transferred tokens 
+        _lastTokenTransferTime[recipient] = block.timestamp; 
         
         if(!takeFee)
             restoreAllFee();
