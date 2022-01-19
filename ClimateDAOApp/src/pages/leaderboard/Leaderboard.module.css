@@ -1,0 +1,143 @@
+.propose-container {
+  width: 100%;
+}
+
+#propose-title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 75px;
+  /* or 250% */
+
+  text-align: center;
+
+  color: #24272f;
+  margin-top: 2.5rem;
+}
+
+#propose-sub-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 45px;
+  /* or 225% */
+
+  text-align: center;
+
+  color: rgba(47, 47, 47, 0.9);
+}
+
+.divider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#horiz-divider {
+  width: 1159px;
+  height: 0px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.entry-header {
+  margin-top: 5.25rem;
+  margin-bottom: 1.1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#rank-wallet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 342px;
+  padding-left: 1.5rem;
+}
+
+#contribution {
+  width: 816.5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#contribution-text {
+  padding-right: 2.5rem;
+}
+
+.entry-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  #rank-wallet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 342px;
+    padding-left: 1.5rem;
+  }
+
+  #contribution {
+    width: 460px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  #contribution-text {
+    padding-right: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  #rank-wallet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 342px;
+    padding-left: 2.5rem;
+  }
+
+  #contribution {
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  #contribution-text {
+    padding-right: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #horiz-divider {
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 393px) {
+  #horiz-divider {
+    width: 365px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #horiz-divider {
+    width: 320px;
+  }
+}

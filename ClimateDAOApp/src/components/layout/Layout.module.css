@@ -1,0 +1,8 @@
+.main {
+  position: relative;
+  width: 100vw;
+  height: 1806px;
+  z-index: 0;
+  background: #ffffff;
+  margin: 0 auto;
+}

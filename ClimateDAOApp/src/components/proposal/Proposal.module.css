@@ -1,0 +1,50 @@
+#vote {
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+  position: absolute;
+  text-decoration-line: underline;
+
+  color: #54e184;
+
+  /* Inside auto layout */
+
+  flex-grow: 0;
+  margin: 0px 16px;
+  left: 90%;
+  z-index: 100;
+}
+
+#vote-count {
+  position: absolute;
+
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  left: 82%;
+  color: rgba(0, 0, 0, 0.5);
+
+  margin: 0px 16px;
+}
+
+@media screen and (max-width: 1200px) {
+  #vote {
+    left: 85%;
+  }
+
+  #vote-count {
+    left: 74%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #vote {
+    left: 65%;
+  }
+
+  #vote-count {
+    left: 40%;
+  }
+}

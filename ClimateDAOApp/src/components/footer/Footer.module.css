@@ -1,0 +1,43 @@
+.footer-container {
+  /* top: 84.4%; */
+
+  width: 100%;
+  height: 202px;
+  background: #54e184;
+  position: absolute;
+  bottom: 0px;
+}
+
+.icons {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 9.5rem;
+  gap: 3rem;
+}
+
+@media screen and (max-width: 919px) {
+  .footer-container {
+    /* top: 84.4%; */
+
+    top: 110%;
+  }
+
+  .icons {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1.5rem;
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 393px) {
+  .footer-container {
+    /* top: 84.4%; */
+
+    top: 115%;
+  }
+}

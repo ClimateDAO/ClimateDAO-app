@@ -1,0 +1,208 @@
+.propose-container {
+  width: 100%;
+}
+
+#propose-title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 75px;
+  /* or 250% */
+
+  text-align: center;
+
+  color: #24272f;
+  margin-top: 2.5rem;
+}
+
+#propose-sub-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 45px;
+  /* or 225% */
+
+  text-align: center;
+
+  color: rgba(47, 47, 47, 0.9);
+}
+
+.divider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#horiz-divider {
+  width: 1159px;
+  height: 0px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.375rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 565px;
+}
+
+#input-one {
+  width: 549px;
+  height: 52px;
+
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+#input-two {
+  width: 549px;
+  height: 226px;
+
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  resize: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+button {
+  width: 275px;
+  height: 56px;
+
+  background: #54e184;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#form-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+  margin-bottom: 0.65rem;
+}
+
+#form-title-two {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+  margin-bottom: 0.65rem;
+}
+
+@media screen and (max-width: 568px) {
+  form {
+    width: 400px;
+  }
+
+  #input-one {
+    width: 400px;
+  }
+
+  #input-two {
+    width: 400px;
+    height: 226px;
+  }
+
+  button {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  form {
+    width: 350px;
+    padding-right: 1rem;
+  }
+
+  #input-one {
+    width: 350px;
+  }
+
+  #input-two {
+    width: 350px;
+  }
+
+  #propose-title {
+    font-size: 30px;
+    margin-top: 1rem;
+  }
+
+  #propose-sub-title {
+    font-size: 18px;
+    line-height: 45px;
+  }
+
+  button {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  form {
+    width: 300px;
+    padding-right: 1rem;
+  }
+
+  #input-one {
+    width: 300px;
+  }
+
+  #input-two {
+    width: 300px;
+  }
+
+  #propose-title {
+    font-size: 30px;
+    margin-top: 1rem;
+  }
+
+  #propose-sub-title {
+    font-size: 18px;
+    line-height: 45px;
+  }
+
+  button {
+    width: 300px;
+  }
+}

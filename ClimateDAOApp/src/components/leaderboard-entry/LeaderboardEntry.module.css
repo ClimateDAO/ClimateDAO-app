@@ -1,0 +1,118 @@
+.entry {
+  width: 1159px;
+  height: 69.55px;
+
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14rem;
+}
+
+.col-one {
+  display: flex;
+  gap: 17rem;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex-grow: 0;
+  margin: 0px 16px;
+}
+
+#contribution {
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.5);
+
+  /* Inside auto layout */
+  flex-grow: 1;
+  margin: 0px 1rem;
+  padding-left: 6rem;
+
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+#wallet {
+  padding-left: 0.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .entry {
+    width: 800px;
+    position: relative;
+    gap: 5rem;
+  }
+
+  #contribution {
+    position: absolute;
+    font-size: 16px;
+    left: 80%;
+  }
+
+  .col-one {
+    gap: 10rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .entry {
+    width: 600px;
+    position: relative;
+    gap: 5rem;
+  }
+
+  #contribution {
+    position: absolute;
+    font-size: 16px;
+    left: 70%;
+  }
+
+  .col-one {
+    font-size: 16px;
+    gap: 7rem;
+  }
+}
+
+@media screen and (max-width: 459px) {
+  .entry {
+    width: 380px;
+    position: relative;
+    gap: 5rem;
+  }
+
+  #contribution {
+    position: absolute;
+    font-size: 16px;
+    left: 60%;
+  }
+
+  .col-one {
+    font-size: 16px;
+    gap: 6rem;
+  }
+}
+
+@media screen and (max-width: 393px) {
+  .entry {
+    width: 365px;
+    position: relative;
+    gap: 5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .entry {
+    width: 340px;
+    position: relative;
+    gap: 5rem;
+  }
+}

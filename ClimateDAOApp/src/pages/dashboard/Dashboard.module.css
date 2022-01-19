@@ -1,0 +1,115 @@
+.propose-container {
+  width: 100%;
+}
+
+#propose-title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 75px;
+  /* or 250% */
+
+  text-align: center;
+
+  color: #24272f;
+  margin-top: 2.5rem;
+}
+
+#propose-sub-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 45px;
+  /* or 225% */
+
+  text-align: center;
+
+  color: rgba(47, 47, 47, 0.9);
+}
+
+.divider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#horiz-divider {
+  width: 1159px;
+  height: 0px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.4375rem;
+  gap: 26rem;
+}
+
+.view-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.total-active {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+
+  color: #000000;
+  vertical-align: top;
+}
+
+#view {
+  font-weight: bold;
+}
+
+.view-elem {
+  color: #bfbfbf;
+  cursor: pointer;
+}
+
+.accordion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.MuiDialogContent-root {
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .view-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 16px;
+  }
+
+  #view {
+    display: none;
+  }
+
+  .accordion-container {
+    overflow: auto;
+    height: 1500px;
+  }
+}

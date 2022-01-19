@@ -1,0 +1,114 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.navbar-container {
+  position: absolute;
+
+  background: #ffffff;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  animation: 0.5s ease-out 0s 1 slideInFromLeft;
+  position: absolute;
+  height: 100%;
+  width: 300px;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+h1 {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 75px;
+  /* or 375% */
+
+  color: #24272f;
+
+  /* Inside auto layout */
+}
+
+.connect-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#wallet-connect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 49px;
+  border: 1px solid #54e184;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #54e184;
+  cursor: pointer;
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 2rem;
+  padding-top: 3.625rem;
+}
+
+.nav {
+  width: 250px;
+  height: 56px;
+
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.5rem;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* or 122% */
+}
+
+.active > div {
+  color: #54e184;
+  background: rgba(116, 236, 101, 0.2);
+}
+
+.icon-container {
+  position: absolute;
+  top: 2.2%;
+  left: 83%;
+  cursor: pointer;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* or 122% */
+
+  color: #5b5d64;
+}
