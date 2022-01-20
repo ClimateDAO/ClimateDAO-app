@@ -5,6 +5,6 @@ const Earth = artifacts.require('EARTH');
 
 describe("Earth", function () {
 
-  expect(true);
+
 
 })

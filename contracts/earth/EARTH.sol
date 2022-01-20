@@ -598,7 +598,8 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         _isExcludedFromFee[owner()] = true;
         _isExcludedFromFee[address(this)] = true;
         
-        emit Transfer(address(0), _msgSender(), _tTotal);
+        // emit Transfer(address(0), _msgSender(), _tTotal);
+        mint(msg.sender, 10000); 
     }
 
     // RH: added a bunch of overrides after adding ERC20VotesUpgradeable 
