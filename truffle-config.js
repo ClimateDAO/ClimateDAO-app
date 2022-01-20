@@ -20,6 +20,7 @@ module.exports = {
   },
   contracts_directory: './contracts/earth/', //change this depending on what you're trying to deploy
   contracts_build_directory: './contracts/earth/build/', //change this depending on what you're trying to deploy
+  test_directory: './contracts/earth/test',
   contracts_artifacts_directory: './artifacts/',
   networks: {
     development: {
