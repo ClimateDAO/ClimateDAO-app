@@ -558,8 +558,8 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     uint256 public _liquidityFee = 5;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
-    IUniswapV2Router02 public immutable uniswapV2Router;
-    address public immutable uniswapV2Pair;
+    //IUniswapV2Router02 public immutable uniswapV2Router;
+    //address public immutable uniswapV2Pair;
     
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
@@ -583,23 +583,23 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     
     // RH: removed public; constructor visibility is ignored 
     // Question about constructor in notion 
-    constructor () ERC20Upgradeable() ERC20PermitUpgradeable() {
+    constructor () ERC20Upgradeable() ERC20PermitUpgradeable() OwnableUpgradeable() {
         _rOwned[_msgSender()] = _rTotal;
         
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);
+        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);
          // Create a uniswap pair for this new token
-        uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
-            .createPair(address(this), _uniswapV2Router.WETH());
+        //uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
+            //.createPair(address(this), _uniswapV2Router.WETH());
 
         // set the rest of the contract variables
-        uniswapV2Router = _uniswapV2Router;
+        //uniswapV2Router = _uniswapV2Router;
         
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;
         _isExcludedFromFee[address(this)] = true;
         
         // emit Transfer(address(0), _msgSender(), _tTotal);
-        mint(msg.sender, 10000); 
+        // mint(msg.sender, 10000); 
     }
 
     // RH: added a bunch of overrides after adding ERC20VotesUpgradeable 
@@ -932,7 +932,7 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         if (
             overMinTokenBalance &&
             !inSwapAndLiquify &&
-            from != uniswapV2Pair &&
+            //from != uniswapV2Pair &&
             swapAndLiquifyEnabled
         ) {
             contractTokenBalance = numTokensSellToAddToLiquidity;
@@ -964,18 +964,18 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
         uint256 initialBalance = address(this).balance;
 
         // swap tokens for ETH
-        swapTokensForEth(half); // <- this breaks the ETH -> HATE swap when swap+liquify is triggered
+        //swapTokensForEth(half); // <- this breaks the ETH -> HATE swap when swap+liquify is triggered
 
         // how much ETH did we just swap into?
         uint256 newBalance = address(this).balance.sub(initialBalance);
 
         // add liquidity to uniswap
-        addLiquidity(otherHalf, newBalance);
+        //addLiquidity(otherHalf, newBalance);
         
         emit SwapAndLiquify(half, newBalance, otherHalf);
     }
 
-    function swapTokensForEth(uint256 tokenAmount) private {
+    /*function swapTokensForEth(uint256 tokenAmount) private {
         // generate the uniswap pair path of token -> weth
         address[] memory path = new address[](2);
         path[0] = address(this);
@@ -1006,7 +1006,7 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
             owner(),
             block.timestamp
         );
-    }
+    }*/
 
     //this method is responsible for taking all fee, if takeFee is true
     function _tokenTransfer(address sender, address recipient, uint256 amount,bool takeFee) private {
