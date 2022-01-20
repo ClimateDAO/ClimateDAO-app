@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ClimateDAO/ClimateDAO-app#readme",
   "dependencies": {
-    "dotenv": "^10.0.0"
+    "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.3"
   }
 }
