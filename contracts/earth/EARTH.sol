@@ -1011,11 +1011,9 @@ contract EARTH is ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, 
     //this method is responsible for taking all fee, if takeFee is true
     function _tokenTransfer(address sender, address recipient, uint256 amount,bool takeFee) private {
 
-        // RH: QUESTION: Doesn't this remove fees for everyone though since it's an application state? 
         if(!takeFee)
             removeAllFee();
         
-        // RH: QUESTION: why is this so complicated? 
         if (_isExcluded[sender] && !_isExcluded[recipient]) {
             _transferFromExcluded(sender, recipient, amount);
         } else if (!_isExcluded[sender] && _isExcluded[recipient]) {

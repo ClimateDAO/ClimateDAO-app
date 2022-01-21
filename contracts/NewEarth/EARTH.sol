@@ -112,14 +112,14 @@ contract EARTH is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Own
         /**
          *  The actual calculation is: 
          *  
-         *  initialFee = amount / initialTax 
+         *  initialFee = (amount * initialTax) / 100 
          *  taxFraction = (expiry - timeSince) / expiry
          *  actualFee = initialFee * taxFraction 
          *  
          *  To avoid decimal issues, it's best to multiply all the numerators first, then denominators
          *  
-         *  feeNumerator = amount * (expiry - timeSince) 
-         *  feeDenominator = expiry * initialTax            // Requires a non-zero initialTaxFee 
+         *  feeNumerator = amount * initialTax * (expiry - timeSince) 
+         *  feeDenominator = expiry * 100           // Requires a non-zero initialTaxFee 
          *  actualFee = feeNumerator / feeDenominator 
          *  
          */
@@ -138,8 +138,8 @@ contract EARTH is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Own
             return (0, amount); 
         }
 
-        uint256 feeNumerator = amount.mul(_expiry.sub(timeSince)); 
-        uint256 feeDenominator = _expiry.mul(_initialTaxFee); 
+        uint256 feeNumerator = amount.mul(_initialTaxFee).mul(_expiry.sub(timeSince)); 
+        uint256 feeDenominator = _expiry.mul(100); 
         feeTaken = feeNumerator.div(feeDenominator); 
         transferAmount = amount.sub(feeTaken); 
 
