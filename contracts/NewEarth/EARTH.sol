@@ -85,6 +85,7 @@ contract EARTH is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Own
 
         if(isExcludedFromFee[msg.sender]) {
             super.transfer(recipient, amount);
+            _lastTokenTransferTime[recipient] = block.timestamp;
             tokenHolderNumTokens[recipient] = tokenHolderNumTokens[recipient].add(amount);
         }
         else {
@@ -93,6 +94,7 @@ contract EARTH is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Own
             //call the function to distribute the fees as described in the Whitepaper
             _distributeFees(feeTaken);
             super.transfer(recipient, transferAmount);
+            _lastTokenTransferTime[recipient] = block.timestamp;
             tokenHolderNumTokens[recipient] = tokenHolderNumTokens[recipient].add(transferAmount);
         }
         
