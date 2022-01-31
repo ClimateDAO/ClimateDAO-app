@@ -281,15 +281,18 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className={classes["accordion-container"]}>
-        {status === "loading" && <LoadingSpinner />}
-        {status !== "loading" && viewMode === "All" && proposalDashboardJsx}
-        {status !== "loading" &&
-          viewMode === "MostVotes" &&
-          proposalDashboardJsxMostVotes}
-        {status !== "loading" &&
-          viewMode === "Newest" &&
-          proposalDashboardJsxNewest}
+
+      <div className={classes["outer-container"]}>
+        <div className={classes["accordion-container"]}>
+          {status === "loading" && <LoadingSpinner />}
+          {status !== "loading" && viewMode === "All" && proposalDashboardJsx}
+          {status !== "loading" &&
+            viewMode === "MostVotes" &&
+            proposalDashboardJsxMostVotes}
+          {status !== "loading" &&
+            viewMode === "Newest" &&
+            proposalDashboardJsxNewest}
+        </div>
       </div>
       <SimpleDialog
         open={open}

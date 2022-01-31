@@ -3,7 +3,7 @@ import classes from "./Propose.module.css";
 import Web3Context from "../../store/Web3-Context";
 import SnackbarUI from "../../components/snackbar/Snackbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
-import { useFirestore, FirebaseAppProvider } from "reactfire";
+import { useFirestore } from "reactfire";
 import { doc, setDoc, runTransaction } from "firebase/firestore";
 const { ethers } = require("ethers");
 
@@ -63,9 +63,11 @@ const Propose = () => {
 
       setIsLoading(false);
       toggleSnackbar(false, "Proposal Submitted");
+      web3Ctx.setTransactionStateFinished();
     } catch (e) {
       setIsLoading(false);
       toggleSnackbar(true, "Failed to submit proposal");
+      web3Ctx.setTransactionStateFinished();
       console.log(e);
     }
   };
@@ -114,6 +116,7 @@ const Propose = () => {
     localStorage.setItem("Description", description);
 
     try {
+      web3Ctx.setTransactionState();
       const tx = await web3Ctx.governorContract.propose(
         [ethers.utils.getAddress("0x5e22B840656d2Ea9dE70ba9CA474793EaF773748")],
         [0],
@@ -123,6 +126,7 @@ const Propose = () => {
       setIsLoading(true);
       await tx.wait();
     } catch (e) {
+      web3Ctx.setTransactionStateFinished();
       setIsLoading(false);
       toggleSnackbar(true, "Transaction Failed");
     }

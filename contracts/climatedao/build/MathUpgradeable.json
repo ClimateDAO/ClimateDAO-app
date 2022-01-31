@@ -10,7 +10,7 @@
   "sourceMap": "187:1035:26:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;187:1035:26;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "187:1035:26:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.0 (utils/math/Math.sol)\n\npragma solidity ^0.8.0;\n\n/**\n * @dev Standard math utilities missing in the Solidity language.\n */\nlibrary MathUpgradeable {\n    /**\n     * @dev Returns the largest of two numbers.\n     */\n    function max(uint256 a, uint256 b) internal pure returns (uint256) {\n        return a >= b ? a : b;\n    }\n\n    /**\n     * @dev Returns the smallest of two numbers.\n     */\n    function min(uint256 a, uint256 b) internal pure returns (uint256) {\n        return a < b ? a : b;\n    }\n\n    /**\n     * @dev Returns the average of two numbers. The result is rounded towards\n     * zero.\n     */\n    function average(uint256 a, uint256 b) internal pure returns (uint256) {\n        // (a + b) / 2 can overflow.\n        return (a & b) + (a ^ b) / 2;\n    }\n\n    /**\n     * @dev Returns the ceiling of the division of two numbers.\n     *\n     * This differs from standard division with `/` in that it rounds up instead\n     * of rounding down.\n     */\n    function ceilDiv(uint256 a, uint256 b) internal pure returns (uint256) {\n        // (a + b - 1) / b can overflow on addition, so we distribute.\n        return a / b + (a % b == 0 ? 0 : 1);\n    }\n}\n",
-  "sourcePath": "/Users/rishubhanda/Desktop/climate_dao/ClimateDAO-app/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
+  "sourcePath": "/Users/matthewrodgers/Desktop/Eudaimonia/githubfiles/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
   "ast": {
     "absolutePath": "project:/contracts/climatedao/@openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol",
     "exportedSymbols": {
@@ -2186,8 +2186,8 @@
     "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-06T02:05:49.178Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-31T20:39:07.566Z",
   "devdoc": {
     "details": "Standard math utilities missing in the Solidity language.",
     "kind": "dev",

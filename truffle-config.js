@@ -18,8 +18,8 @@ module.exports = {
         }
       }
     },
-    contracts_directory: './contracts/climatedao/', //change this depending on what you're trying to deploy
-    contracts_build_directory: './contracts/climatedao/build/', //change this depending on what you're trying to deploy
+    contracts_directory: './contracts/earth/', //change this depending on what you're trying to deploy
+    contracts_build_directory: './contracts/earth/build/', //change this depending on what you're trying to deploy
     contracts_artifacts_directory: './artifacts/',
     networks: {
       development: {
