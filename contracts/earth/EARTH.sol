@@ -23,6 +23,8 @@ contract Earth is ERC20, Ownable, ERC20Permit, ERC20Votes {
     
     constructor() ERC20("Earth", "EARTH") ERC20Permit("Earth") {
         _mint(msg.sender, 100000000 * 10 ** decimals());
+        isExcludedFromFee[msg.sender] = true;
+        isExcludedFromFee[opsClimateDAOWallet] = true;
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
